@@ -3,20 +3,20 @@ using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Transforms;
 
-public class RotationSpeedSystem : SystemBase
+public class EnemyRotationSystem : SystemBase
 {
-    //OnUpdate runs on the main thread.
     protected override void OnUpdate()
     {
         float deltaTime = Time.DeltaTime;
+        float sinTimer = (float)Time.ElapsedTime;
 
         Entities
-            .WithName("RotationSpeedSystem")
-            .ForEach((ref Rotation rotation, in RotationSpeed rotationSpeed) =>
+            .WithName("EnemyRotationSystem")
+            .ForEach((ref Rotation rotation, in EnemyRotation enemyRotation) =>
             {
                 rotation.Value = math.mul(
                     math.normalize(rotation.Value),
-                    quaternion.AxisAngle(math.up(), rotationSpeed.speed * deltaTime));
+                    quaternion.AxisAngle(math.up(), enemyRotation.speed * deltaTime));
             }).ScheduleParallel();
     }
 }

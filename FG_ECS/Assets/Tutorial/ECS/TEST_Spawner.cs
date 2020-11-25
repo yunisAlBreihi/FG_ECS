@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class TEST_Spawner : MonoBehaviour
 {
     public GameObject prefab;
     public int CountX = 100;
