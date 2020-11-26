@@ -3,7 +3,7 @@ using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Transforms;
 
-public class EnemyMoveSystem : SystemBase
+public class MoveSystem : SystemBase
 {
     protected override void OnUpdate()
     {
@@ -12,7 +12,7 @@ public class EnemyMoveSystem : SystemBase
 
         Entities
             .WithName("EnemyMoveSystem")
-            .ForEach((ref Translation translation, in EnemyMove move) =>
+            .ForEach((ref Translation translation, in Move move) =>
             {
                 float3 sinMovement = (math.sin(move.waveDirection * translation.Value.z * move.waveSpeed) * move.waveMagnitude) * deltaTime;
                 translation.Value += move.velocity * deltaTime + sinMovement;

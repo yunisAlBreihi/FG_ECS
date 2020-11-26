@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8670359163426915181}
   - component: {fileID: -5544888029660729620}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: PlayerBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -269,7 +269,7 @@ MonoBehaviour:
   velocity:
     x: 0
     y: 0
-    z: -30
+    z: 60
   waveDirection:
     x: 0
     y: 0
@@ -336,7 +336,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b4fc751c98d24c1478ce9fb275ddb724, type: 2}
+  - {fileID: 2100000, guid: 5ab67949d029afe45a775b20d055b5ac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -5,7 +5,8 @@ using Unity.Jobs;
 using Unity.Transforms;
 using UnityEngine;
 
-public class EnemySpawnBulletsSystem : SystemBase
+[AlwaysSynchronizeSystem]
+public class PlayerShootSystem : SystemBase
 {
     BeginInitializationEntityCommandBufferSystem m_EntityCommandBufferSystem;
 
@@ -18,23 +19,26 @@ public class EnemySpawnBulletsSystem : SystemBase
     protected override void OnUpdate()
     {
         var commandBuffer = m_EntityCommandBufferSystem.CreateCommandBuffer().AsParallelWriter();
-        double time = Time.ElapsedTime;
+        float time = Time.DeltaTime;
 
         Entities
-            .WithName("SpawnerSystem_FromEntity")
+            .WithAll<PlayerTag>()
             .WithBurst(FloatMode.Default, FloatPrecision.Standard, true)
-            .ForEach((Entity entity, int entityInQueryIndex, ref Translation translation, in EnemySpawnBullets enemySpawnBullets, in LocalToWorld location) =>
+            .ForEach((Entity entity, int entityInQueryIndex,ref Translation translation, ref PlayerShoot playerShoot, in LocalToWorld location) =>
             {
-                double roundedTime = time % enemySpawnBullets.spawnCooldown;
-                if (roundedTime < 0.05f)
+                if (playerShoot.pressedShoot == true)
                 {
-                    roundedTime = math.round(roundedTime);
-                    if (roundedTime == 0.0f)
+                    if (playerShoot.shootTimer >= playerShoot.shootCooldownTime)
                     {
-                        var instance = commandBuffer.Instantiate(entityInQueryIndex, enemySpawnBullets.bulletPrefab);
+                        var instance = commandBuffer.Instantiate(entityInQueryIndex, playerShoot.bulletPrefab);
                         commandBuffer.SetComponent(entityInQueryIndex, instance, new Translation { Value = translation.Value });
+                        playerShoot.shootTimer -= playerShoot.shootCooldownTime;
                     }
                 }
+
+                if (playerShoot.shootTimer <= playerShoot.shootCooldownTime) 
+                    playerShoot.shootTimer += time;
+
             }).ScheduleParallel();
     }
 }
