@@ -5,6 +5,7 @@ using Unity.Jobs;
 using Unity.Physics;
 using Unity.Physics.Systems;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
 [UpdateAfter(typeof(EndFramePhysicsSystem))]
@@ -13,6 +14,7 @@ public class CollisionSystem : JobComponentSystem
     private BuildPhysicsWorld buildPhysicsWorld;
     private StepPhysicsWorld stepPhysicsWorld;
     private EndSimulationEntityCommandBufferSystem commandBufferSystem;
+    private const int sceneIndex = 0;
 
     protected override void OnCreate()
     {
@@ -22,7 +24,7 @@ public class CollisionSystem : JobComponentSystem
         commandBufferSystem = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
     }
 
-    [BurstCompile]
+    //[BurstCompile]
     public struct CollisionJob : ITriggerEventsJob
     {
         [ReadOnly] public ComponentDataFromEntity<DeathTriggerTag> deathTriggerGroup;
@@ -31,6 +33,7 @@ public class CollisionSystem : JobComponentSystem
         [ReadOnly] public ComponentDataFromEntity<PlayerTag> playerGroup;
         [ReadOnly] public ComponentDataFromEntity<EnemyTag> enemyGroup;
         public EntityCommandBuffer commandBuffer;
+        [ReadOnly] public int sceneIndex;
 
         public void Execute(TriggerEvent triggerEvent)
         {
@@ -72,41 +75,45 @@ public class CollisionSystem : JobComponentSystem
             //Death player/enemyBullet
             if (isEntityAEnemyBullet && isEntityBPlayer)
             {
-                Debug.Log("death of bullet!");
                 commandBuffer.DestroyEntity(entityA);
                 commandBuffer.DestroyEntity(entityB);
+
+                SceneManager.LoadScene(sceneIndex);
             }
             if (isEntityBEnemyBullet && isEntityAPlayer)
             {
-                Debug.Log("death of bullet 2!");
                 commandBuffer.DestroyEntity(entityA);
                 commandBuffer.DestroyEntity(entityB);
+
+                SceneManager.LoadScene(sceneIndex);
+
             }
 
             //Death player/enemy
             if (isEntityAEnemy && isEntityBPlayer)
             {
-                Debug.Log("death of enemy!");
                 commandBuffer.DestroyEntity(entityA);
                 commandBuffer.DestroyEntity(entityB);
+
+                SceneManager.LoadScene(sceneIndex);
+                //entityManager.DestroyEntity(entityManager.UniversalQuery);
             }
             if (isEntityBEnemy && isEntityAPlayer)
             {
-                Debug.Log("death of enemy 2!");
                 commandBuffer.DestroyEntity(entityA);
                 commandBuffer.DestroyEntity(entityB);
+
+                SceneManager.LoadScene(sceneIndex);
             }
 
             //Death playerBullet/Enemy
             if (isEntityAPlayerBullet && isEntityBEnemy)
             {
-                Debug.Log("death of bullet!");
                 commandBuffer.DestroyEntity(entityA);
                 commandBuffer.DestroyEntity(entityB);
             }
             if (isEntityBPlayerBullet && isEntityAEnemy)
             {
-                Debug.Log("death of bullet 2!");
                 commandBuffer.DestroyEntity(entityA);
                 commandBuffer.DestroyEntity(entityB);
             }
@@ -122,6 +129,7 @@ public class CollisionSystem : JobComponentSystem
         job.enemyGroup = GetComponentDataFromEntity<EnemyTag>(true);
         job.playerGroup = GetComponentDataFromEntity<PlayerTag>(true);
         job.commandBuffer = commandBufferSystem.CreateCommandBuffer();
+        job.sceneIndex = sceneIndex;
 
         JobHandle jobHandle = job.Schedule(stepPhysicsWorld.Simulation, ref buildPhysicsWorld.PhysicsWorld, inputDeps);
         commandBufferSystem.AddJobHandleForProducer(jobHandle);

@@ -328,8 +328,8 @@ MonoBehaviour:
     x: -10
     y: 10
   spawnTimeRange:
-    x: 0.5
-    y: 2
+    x: 0.1
+    y: 0.5
   spawnedPerWaveRange:
     x: 1
     y: 5
@@ -1169,8 +1169,8 @@ MonoBehaviour:
     x: -10
     y: 10
   spawnTimeRange:
-    x: 3
-    y: 8
+    x: 0.5
+    y: 2
   spawnedPerWaveRange:
     x: 1
     y: 1
