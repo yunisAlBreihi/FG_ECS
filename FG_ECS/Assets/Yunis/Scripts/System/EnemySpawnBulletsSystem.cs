@@ -18,22 +18,22 @@ public class EnemySpawnBulletsSystem : SystemBase
     protected override void OnUpdate()
     {
         var commandBuffer = m_EntityCommandBufferSystem.CreateCommandBuffer().AsParallelWriter();
-        double time = Time.ElapsedTime;
+        float deltaTime = Time.DeltaTime;
 
         Entities
-            .WithName("SpawnerSystem_FromEntity")
+            .WithAll<EnemyTag>()
             .WithBurst(FloatMode.Default, FloatPrecision.Standard, true)
-            .ForEach((Entity entity, int entityInQueryIndex, ref Translation translation, in EnemySpawnBullets enemySpawnBullets, in LocalToWorld location) =>
+            .ForEach((Entity entity, int entityInQueryIndex, ref Translation translation, ref EnemySpawnBullets enemySpawnBullets, in LocalToWorld location) =>
             {
-                double roundedTime = time % enemySpawnBullets.spawnCooldown;
-                if (roundedTime < 0.05f)
+                if (enemySpawnBullets.spawnTimer >= enemySpawnBullets.spawnCooldown)
                 {
-                    roundedTime = math.round(roundedTime);
-                    if (roundedTime == 0.0f)
-                    {
                         var instance = commandBuffer.Instantiate(entityInQueryIndex, enemySpawnBullets.bulletPrefab);
                         commandBuffer.SetComponent(entityInQueryIndex, instance, new Translation { Value = translation.Value });
-                    }
+                    enemySpawnBullets.spawnTimer -= enemySpawnBullets.spawnCooldown;
+                }
+                if (enemySpawnBullets.spawnTimer <= enemySpawnBullets.spawnCooldown)
+                {
+                    enemySpawnBullets.spawnTimer += deltaTime;
                 }
             }).ScheduleParallel();
     }

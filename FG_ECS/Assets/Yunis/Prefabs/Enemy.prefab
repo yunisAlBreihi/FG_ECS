@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6282019212231507418}
   - component: {fileID: 6282019212231507413}
-  - component: {fileID: 881607842}
   - component: {fileID: -8327944174851572361}
   - component: {fileID: 2156747850601766082}
-  - component: {fileID: 4029809964822782809}
+  - component: {fileID: 5685827302770061422}
+  - component: {fileID: 4381933372213002318}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -49,28 +49,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConversionMode: 0
---- !u!114 &881607842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6282019212231507419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3145ebb0e82cc6f4985b954e84e23d16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocity:
-    x: 0
-    y: 0
-    z: -5
-  waveDirection:
-    x: 1
-    y: 0
-    z: 0
-  waveSpeed: 3
-  waveMagnitude: 30
 --- !u!114 &-8327944174851572361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,7 +242,7 @@ MonoBehaviour:
         Tag07: 0
     m_SerializedVersion: 1
   m_SerializedVersion: 1
---- !u!114 &4029809964822782809
+--- !u!114 &5685827302770061422
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -273,9 +251,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 6282019212231507419}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01567866cbc521d439dedaf50e56f8f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 30a71a0b6da843143aa4e1a821f3ac34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4381933372213002318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282019212231507419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae58fdef4e823eb4c8780e6c329b33b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity:
+    x: 0
+    y: 0
+    z: -10
+  waveDirection:
+    x: 1
+    y: 0
+    z: 0
+  waveSpeed: 3
+  waveMagnitude: 40
 --- !u!1 &6282019212635013125
 GameObject:
   m_ObjectHideFlags: 0

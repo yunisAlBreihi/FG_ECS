@@ -10,12 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6119900141675231619}
   - component: {fileID: 6119900141675231645}
-  - component: {fileID: 2666481599210037836}
   - component: {fileID: -62938979063677739}
   - component: {fileID: 8670359163426915181}
-  - component: {fileID: -5544888029660729620}
+  - component: {fileID: 3357273085505385420}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: EnemyBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,18 +48,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConversionMode: 0
---- !u!114 &2666481599210037836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6119900141675231618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01567866cbc521d439dedaf50e56f8f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-62938979063677739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,7 +68,7 @@ MonoBehaviour:
   m_InitialLinearVelocity:
     x: 0
     y: 0
-    z: 0
+    z: -30
   m_InitialAngularVelocity:
     x: 0
     y: 0
@@ -129,9 +116,9 @@ MonoBehaviour:
     y: 0
     z: 0
   m_PrimitiveSize:
-    x: 2
-    y: 2
-    z: 2
+    x: 4
+    y: 4
+    z: 4
   m_PrimitiveOrientation:
     Value:
       x: 0
@@ -139,15 +126,15 @@ MonoBehaviour:
       z: 0
     RotationOrder: 4
   m_Capsule:
-    Height: 2
-    Radius: 1
+    Height: 4
+    Radius: 2
     Axis: 2
   m_Cylinder:
-    Height: 2
-    Radius: 1
+    Height: 4
+    Radius: 2
     Axis: 2
   m_CylinderSideCount: 20
-  m_SphereRadius: 1
+  m_SphereRadius: 2
   m_MinimumSkinnedVertexWeight: 0.1
   m_ConvexHullGenerationParameters:
     m_SimplificationTolerance: 0.015
@@ -254,7 +241,7 @@ MonoBehaviour:
         Tag07: 0
     m_SerializedVersion: 1
   m_SerializedVersion: 1
---- !u!114 &-5544888029660729620
+--- !u!114 &3357273085505385420
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -263,19 +250,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6119900141675231618}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3145ebb0e82cc6f4985b954e84e23d16, type: 3}
+  m_Script: {fileID: 11500000, guid: 01567866cbc521d439dedaf50e56f8f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity:
-    x: 0
-    y: 0
-    z: -30
-  waveDirection:
-    x: 0
-    y: 0
-    z: 0
-  waveSpeed: 0
-  waveMagnitude: 0
 --- !u!1 &6119900142596776671
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +264,6 @@ GameObject:
   - component: {fileID: 6119900142596776664}
   - component: {fileID: 6119900142596776667}
   - component: {fileID: 6119900142596776666}
-  - component: {fileID: 6119900142596776665}
   m_Layer: 0
   m_Name: BulletMesh
   m_TagString: Untagged
@@ -358,16 +334,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &6119900142596776665
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6119900142596776671}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}

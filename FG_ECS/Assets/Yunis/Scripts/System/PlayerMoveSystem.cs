@@ -10,9 +10,9 @@ public class PlayerMoveSystem : SystemBase
     {
         float deltaTime = Time.DeltaTime;
 
-        Entities.
-            WithAll<PlayerTag>().
-            ForEach((ref Translation translation, in MovePlayer moveData) =>
+        Entities
+            .WithAll<PlayerTag>()
+            .ForEach((ref Translation translation, in MovePlayer moveData) =>
             {
                 translation.Value += moveData.moveHorizontal * moveData.moveSpeed * deltaTime;
             }).Run();

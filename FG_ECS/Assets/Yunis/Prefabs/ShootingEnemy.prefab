@@ -9,12 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6282019212231507418}
-  - component: {fileID: 6282019212231507413}
-  - component: {fileID: 881607842}
   - component: {fileID: 4421875148190544258}
   - component: {fileID: -2142361910929221444}
   - component: {fileID: -2424641666223910225}
   - component: {fileID: 3240480682869469772}
+  - component: {fileID: -8032572041916891793}
+  - component: {fileID: -5373353325537269064}
+  - component: {fileID: 6282019212231507413}
   m_Layer: 0
   m_Name: ShootingEnemy
   m_TagString: Untagged
@@ -37,41 +38,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6282019212231507413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6282019212231507419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea7d7495833204790ba1d3a8755397f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ConversionMode: 0
---- !u!114 &881607842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6282019212231507419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3145ebb0e82cc6f4985b954e84e23d16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocity:
-    x: 0
-    y: 0
-    z: -3
-  waveDirection:
-    x: 1
-    y: 0
-    z: 0
-  waveSpeed: 1
-  waveMagnitude: 30
 --- !u!114 &4421875148190544258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,7 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 6119900141675231618, guid: a1640981a57746f48800ab317fef5b6c, type: 3}
-  spawnCooldown: 2
+  spawnCooldown: 1.5
 --- !u!114 &-2424641666223910225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,6 +258,53 @@ MonoBehaviour:
         Tag07: 0
     m_SerializedVersion: 1
   m_SerializedVersion: 1
+--- !u!114 &-8032572041916891793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282019212231507419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae58fdef4e823eb4c8780e6c329b33b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity:
+    x: 0
+    y: 0
+    z: -5
+  waveDirection:
+    x: 1
+    y: 0
+    z: 0
+  waveSpeed: 0.2
+  waveMagnitude: 30
+--- !u!114 &-5373353325537269064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282019212231507419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a71a0b6da843143aa4e1a821f3ac34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6282019212231507413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282019212231507419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea7d7495833204790ba1d3a8755397f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConversionMode: 0
 --- !u!1 &6282019212635013125
 GameObject:
   m_ObjectHideFlags: 0

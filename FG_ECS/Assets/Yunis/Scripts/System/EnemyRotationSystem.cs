@@ -11,7 +11,7 @@ public class EnemyRotationSystem : SystemBase
         float sinTimer = (float)Time.ElapsedTime;
 
         Entities
-            .WithName("EnemyRotationSystem")
+            .WithAll<EnemyTag>()
             .ForEach((ref Rotation rotation, in EnemyRotation enemyRotation) =>
             {
                 rotation.Value = math.mul(

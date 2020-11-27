@@ -2,7 +2,7 @@
 using Unity.Mathematics;
 
 [GenerateAuthoringComponent]
-public struct Move : IComponentData
+public struct EnemyMove : IComponentData
 {
     public float3 velocity;
     public float3 waveDirection;
