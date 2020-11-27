@@ -90,7 +90,7 @@ MonoBehaviour:
     x: 0
     y: 0
     z: 0
-  m_GravityFactor: 1
+  m_GravityFactor: 0
   m_OverrideDefaultMassDistribution: 0
   m_CenterOfMass:
     x: 0
@@ -279,7 +279,7 @@ MonoBehaviour:
     y: 0
     z: 0
   waveSpeed: 0.2
-  waveMagnitude: 30
+  waveMagnitude: 20
 --- !u!114 &-5373353325537269064
 MonoBehaviour:
   m_ObjectHideFlags: 0

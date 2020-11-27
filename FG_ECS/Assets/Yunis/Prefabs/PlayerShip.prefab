@@ -42,6 +42,11 @@ GameObject:
   - component: {fileID: 6915731624797533735}
   - component: {fileID: 140031256}
   - component: {fileID: 140031255}
+  - component: {fileID: 5940200449659769913}
+  - component: {fileID: 1323898650406300050}
+  - component: {fileID: 140031258}
+  - component: {fileID: 140031259}
+  - component: {fileID: 140031257}
   m_Layer: 0
   m_Name: PlayerShip
   m_TagString: Untagged
@@ -76,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccea9ea98e38942e0b0938c27ed1903e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MotionType: 0
+  m_MotionType: 1
   m_Smoothing: 0
   m_Mass: 1
   m_LinearDamping: 0.01
@@ -257,6 +262,77 @@ MonoBehaviour:
         Tag07: 0
     m_SerializedVersion: 1
   m_SerializedVersion: 1
+--- !u!114 &5940200449659769913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6915731624797533753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abc06bead77afd741a606817038cc74d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveHorizontal:
+    x: 0
+    y: 0
+    z: 0
+  moveSpeed: 60
+--- !u!114 &1323898650406300050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6915731624797533753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efbc3b35f4334ba4782b1fa089c9654c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  right: 100
+  left: 97
+--- !u!114 &140031258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6915731624797533753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7d1830ef2cbc3459a965769be3de7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &140031259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6915731624797533753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f469140a5b3f12442840069567debaa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 6119900141675231618, guid: 6d2f7832cc8a78a4eb628f9cdae93ebb, type: 3}
+  shootButton: 32
+  shootCooldownTime: 0.1
+--- !u!114 &140031257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6915731624797533753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea7d7495833204790ba1d3a8755397f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConversionMode: 0
 --- !u!1001 &6915731626207046939
 PrefabInstance:
   m_ObjectHideFlags: 0

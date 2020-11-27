@@ -19,7 +19,7 @@ public class PlayerShootSystem : SystemBase
     protected override void OnUpdate()
     {
         var commandBuffer = m_EntityCommandBufferSystem.CreateCommandBuffer().AsParallelWriter();
-        float time = Time.DeltaTime;
+        float deltaTime = Time.DeltaTime;
 
         Entities
             .WithAll<PlayerTag>()
@@ -37,7 +37,7 @@ public class PlayerShootSystem : SystemBase
                 }
 
                 if (playerShoot.shootTimer <= playerShoot.shootCooldownTime) 
-                    playerShoot.shootTimer += time;
+                    playerShoot.shootTimer += deltaTime;
 
             }).ScheduleParallel();
     }

@@ -25,7 +25,7 @@ public class CollisionSystem : JobComponentSystem
     [BurstCompile]
     public struct CollisionJob : ITriggerEventsJob
     {
-        [ReadOnly] public ComponentDataFromEntity<DeathTrigger> deathTriggerGroup;
+        [ReadOnly] public ComponentDataFromEntity<DeathTriggerTag> deathTriggerGroup;
         [ReadOnly] public ComponentDataFromEntity<EnemyBulletTag> enemyBulletGroup;
         [ReadOnly] public ComponentDataFromEntity<PlayerBulletTag> playerBulletGroup;
         [ReadOnly] public ComponentDataFromEntity<PlayerTag> playerGroup;
@@ -43,10 +43,10 @@ public class CollisionSystem : JobComponentSystem
             bool isEntityBEnemyBullet = enemyBulletGroup.HasComponent(entityB);
             bool isEntityAPlayerBullet = playerBulletGroup.HasComponent(entityA);
             bool isEntityBPlayerBullet = playerBulletGroup.HasComponent(entityB);
-            bool isEntityAEnemy = enemyGroup.HasComponent(entityA);
-            bool isEntityBEnemy = enemyGroup.HasComponent(entityB);
             bool isEntityAPlayer = playerGroup.HasComponent(entityA);
             bool isEntityBPlayer = playerGroup.HasComponent(entityB);
+            bool isEntityAEnemy = enemyGroup.HasComponent(entityA);
+            bool isEntityBEnemy = enemyGroup.HasComponent(entityB);
 
             //if ((isEntityAEnemyBullet && isEntityBPlayer) || (isEntityBEnemyBullet && isEntityAPlayer) ||
             //    (isEntityAPlayerBullet && isEntityBEnemy) || (isEntityBPlayerBullet && isEntityAEnemy) ||
@@ -56,6 +56,18 @@ public class CollisionSystem : JobComponentSystem
             //    commandBuffer.DestroyEntity(entityA);
             //    commandBuffer.DestroyEntity(entityB);
             //}
+
+            //Kill whatever hits the death box
+            if (isBodyATrigger &&
+               (isEntityBEnemyBullet || isEntityBPlayerBullet || isEntityBEnemy))
+            {
+                commandBuffer.DestroyEntity(entityB);
+            }
+            if (isBodyBTrigger &&
+               (isEntityAEnemyBullet || isEntityAPlayerBullet || isEntityAEnemy))
+            {
+                commandBuffer.DestroyEntity(entityA);
+            }
 
             //Death player/enemyBullet
             if (isEntityAEnemyBullet && isEntityBPlayer)
@@ -104,15 +116,16 @@ public class CollisionSystem : JobComponentSystem
     protected override JobHandle OnUpdate(JobHandle inputDeps)
     {
         var job = new CollisionJob();
-        job.deathTriggerGroup = GetComponentDataFromEntity<DeathTrigger>(true);
+        job.deathTriggerGroup = GetComponentDataFromEntity<DeathTriggerTag>(true);
         job.enemyBulletGroup = GetComponentDataFromEntity<EnemyBulletTag>(true);
         job.playerBulletGroup = GetComponentDataFromEntity<PlayerBulletTag>(true);
         job.enemyGroup = GetComponentDataFromEntity<EnemyTag>(true);
         job.playerGroup = GetComponentDataFromEntity<PlayerTag>(true);
         job.commandBuffer = commandBufferSystem.CreateCommandBuffer();
-        JobHandle jobHandle = job.Schedule(stepPhysicsWorld.Simulation, ref buildPhysicsWorld.PhysicsWorld, inputDeps);
 
+        JobHandle jobHandle = job.Schedule(stepPhysicsWorld.Simulation, ref buildPhysicsWorld.PhysicsWorld, inputDeps);
         commandBufferSystem.AddJobHandleForProducer(jobHandle);
+
         return jobHandle;
     }
 }
